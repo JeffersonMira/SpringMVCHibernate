@@ -15,7 +15,7 @@
     <org.springframework-version>4.0.3.RELEASE</org.springframework-version>
     <org.aspectj-version>1.7.4</org.aspectj-version>
     <org.slf4j-version>1.7.5</org.slf4j-version>
-    <hibernate-version>4.3.5</hibernate-version>
+    <hibernate-version>4.3.5.Final</hibernate-version>
   </properties>
 
   <dependencies>
@@ -51,11 +51,19 @@
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-core</artifactId>
   		<version>${hibernate-version}</version>
-  	</dependency>	
+  	</dependency>
+  		
 	<dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-entitymanager</artifactId>
-		<version>${hibernate.version}</version>
+		<version>${hibernate-version}</version>
+	</dependency>
+	
+	<!-- MySQL database driver -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.9</version>
 	</dependency>
   	
   	<!-- Apache Commons DBCP -->
