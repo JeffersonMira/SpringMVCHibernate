@@ -13,6 +13,8 @@ import com.journaldev.spring.model.Person;
 @Repository
 public class PersonDAOImpl implements PersonDAO {
 
+	/*proveniente do org.slf4j, que é uma adaptação para outras ferrametas de log 
+	 * no caso, log4j*/
 	public static final Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
 	
 	private SessionFactory sessionFactory;
