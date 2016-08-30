@@ -1,8 +1,5 @@
 package com.journaldev.spring;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.journaldev.spring.model.Person;
 import com.journaldev.spring.service.PersonService;
 
+
+//fonte https://www.caelum.com.br/apostila-java-web/spring-mvc/#11-18-melhorando-a-usabilidade-da-nossa-aplicacao
 @Controller
 public class PersonController {
 
