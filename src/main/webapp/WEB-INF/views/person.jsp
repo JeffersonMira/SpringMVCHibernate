@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- Estudar este cara -->
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
@@ -24,7 +24,7 @@
 	<c:if test="${!empty person.name}">
 	<tr>
 		<td>
-			<form:label path="id">
+			<form:label path="id">  <!--  path é o nome do atributo que será enviado. Poderia também ser path="person.id"-->
 				<spring:message text="ID"/>
 			</form:label>
 		</td>
@@ -42,6 +42,7 @@
 		</td>
 		<td>
 			<form:input path="name" />
+			<form:errors path="name" cssStyle="color:red" cssClass=""/>
 		</td> 
 	</tr>
 	<tr>

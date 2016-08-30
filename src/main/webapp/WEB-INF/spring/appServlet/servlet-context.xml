@@ -12,11 +12,39 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	<context:component-scan base-package="com.journaldev.spring" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	
+    <!-- bind your messages.properties -->
+	<beans:bean class="org.springframework.context.support.ResourceBundleMessageSource"	id="messageSource">
+		<beans:property name="basename" value="messages" />
+	</beans:bean>
+	
 
+	<!-- View resolver for tiles -->
+	<beans:bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass">
+			<beans:value>
+				org.springframework.web.servlet.view.tiles3.TilesView
+			</beans:value>
+		</beans:property>
+	</beans:bean>
+	
+	
+
+	<beans:bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>  
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
@@ -25,6 +53,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+
+	<!-- DataSource -->
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url" 	value="jdbc:mysql://localhost:3306/base_spring" />
@@ -55,8 +85,6 @@
 	<beans:bean id="personService" class="com.journaldev.spring.service.PersonServiceImpl">
 		<beans:property name="personDAO" ref="personDAO"></beans:property>
 	</beans:bean>
-	
-	<context:component-scan base-package="com.journaldev.spring" />
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	

@@ -92,6 +92,13 @@
 		<version>${org.springframework-version}</version>
 	</dependency>
 	
+	<!-- Hibernate Validator -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>4.2.0.Final</version>
+	</dependency>
+	
 	<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -168,6 +175,47 @@
 			<version>1.2</version>
 		</dependency>
 		
+		<dependency>
+    <groupId>xerces</groupId>
+    <artifactId>xercesImpl</artifactId>
+    <version>2.8.1</version>
+</dependency>
+
+		
+		<!-- Tiles -->
+		
+		   <!-- Tiles API -->
+     <!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-api -->
+     <dependency>
+         <groupId>org.apache.tiles</groupId>
+         <artifactId>tiles-api</artifactId>
+         <version>3.0.5</version>
+     </dependency>
+ 
+ 
+     <!-- Tiles Core -->
+     <!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
+     <dependency>
+         <groupId>org.apache.tiles</groupId>
+         <artifactId>tiles-core</artifactId>
+         <version>3.0.5</version>
+     </dependency>
+ 
+     <!-- Tiles Servlet -->
+     <!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-servlet -->
+     <dependency>
+         <groupId>org.apache.tiles</groupId>
+         <artifactId>tiles-servlet</artifactId>
+         <version>3.0.5</version>
+     </dependency>
+ 
+     <!-- Tiles JSP -->
+     <!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+     <dependency>
+         <groupId>org.apache.tiles</groupId>
+         <artifactId>tiles-jsp</artifactId>
+         <version>3.0.5</version>
+     </dependency>
 		
   	<!-- Tests -->
 		<dependency>

@@ -1,9 +1,15 @@
 package com.journaldev.spring;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +29,14 @@ public class PersonController {
 		this.personService = personService;
 	}
 	
+	
+//	@RequestMapping(value="/",method=RequestMethod.GET)
+//	public String listPersonsInit(Model model){
+//		model.addAttribute("person",new Person());
+//		model.addAttribute("listPersons", this.personService.listPersons());
+//		return "person";
+//	}
+	
 	@RequestMapping(value="/persons",method=RequestMethod.GET)
 	public String listPersons(Model model){
 		model.addAttribute("person",new Person());
@@ -31,7 +45,16 @@ public class PersonController {
 	}
 	
 	@RequestMapping(value="/person/add", method=RequestMethod.POST)
-	public String addPerson(@ModelAttribute("person") Person p){
+	public String addPerson(@Valid @ModelAttribute("person") Person p, //O objeto tem que ter um contrutor vazio e todos os atributos tem que ter get e set
+						BindingResult bindingResult, Model model){//JSR303 validation
+		
+		/*Feio pakas esse código da porrrrrrrrrrrra*/
+		if(bindingResult.hasErrors()){
+			//Quando se usa o JSR303 não se pode dar o redirect. Caso seja feito um redirect, é 
+			//o erro validationException não é tratado.
+			model.addAttribute("listPersons", this.personService.listPersons());
+			return "person";
+		}
 		
 		if(p.getId() == 0){
 			//new person, add it
