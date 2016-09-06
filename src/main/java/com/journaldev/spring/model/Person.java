@@ -6,9 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
 
 /**
  * Entity bean with JPA annotations
@@ -24,8 +24,8 @@ public class Person {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@NotEmpty(message="Name must not be empty, your asshole")
-	@Range(min=15, max=150)
+	@NotEmpty
+	@Size(max=150)
 	private String name;
 	private String country;
 	
