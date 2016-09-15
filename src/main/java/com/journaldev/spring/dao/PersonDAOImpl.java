@@ -2,10 +2,15 @@ package com.journaldev.spring.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.journaldev.spring.model.Person;
@@ -15,8 +20,11 @@ public class PersonDAOImpl implements PersonDAO {
 
 	/*proveniente do org.slf4j, que é uma adaptação para outras ferrametas de log 
 	 * no caso, log4j*/
-	public static final Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
+	/*Utilizando logger no log4j, sem slf4j*/
+	public static final Logger logger = LogManager.getLogger(PersonDAOImpl.class.getName());
 	
+	@Autowired
+	@Qualifier("hibernate4AnnotatedSessionFactory")
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -27,7 +35,7 @@ public class PersonDAOImpl implements PersonDAO {
 	public void addPerson(Person p) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(p);
-		logger.info("Person saved successfully, Person Details="+p);
+		logger.log(Level.ERROR, "Person updated successfully, Person Details=");
 	}
 
 	@Override
