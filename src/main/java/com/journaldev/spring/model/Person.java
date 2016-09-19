@@ -28,12 +28,25 @@ public class Person {
 	@Size(max=150)
 	private String name;
 	private String country;
+
+	public Person(){
+		
+	}
 	
+	public Person(int id, String name, String country) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.country = country;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
-		this.id = id;
+		if(id > 0)
+			this.id = id;
+		else
+			throw new RuntimeException("impossibru");
 	}
 	public String getName() {
 		return name;
