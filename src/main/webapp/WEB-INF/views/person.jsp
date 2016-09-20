@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- Estudar este cara -->
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib prefix="sec"  uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -78,7 +79,7 @@
 		<th width="120">Person Name</th>
 		<th width="120">Person Country</th>
 		<th width="60">Edit</th>
-		<th width="60">Delete</th>
+		<sec:authorize access="hasRole('ROLE_MEMBRO')"> <th width="60">Delete</th></sec:authorize>
 	</tr>
 	<c:forEach items="${listPersons}" var="person">
 		<tr>
@@ -86,7 +87,7 @@
 			<td>${person.name}</td>
 			<td>${person.country}</td>
 			<td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td>
+			<sec:authorize access="hasRole('ROLE_MEMBRO')"> <td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td></sec:authorize>
 		</tr>
 	</c:forEach>
 	</table>
