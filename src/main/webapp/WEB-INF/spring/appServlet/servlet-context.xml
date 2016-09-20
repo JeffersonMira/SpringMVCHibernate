@@ -5,12 +5,15 @@
 	xmlns:context="http://www.springframework.org/schema/context" 
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 		http://www.springframework.org/schema/aop
-		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
@@ -103,4 +106,13 @@
 <!-- 		<aop:pointcut expression="execution(* com.journaldev.spring.service.PersonServiceImpl.*(..))" id="addOperation"/> -->
 <!-- 		<aop:advisor pointcut-ref="addOperation"  advice-ref="txAdvice" /> -->
 <!-- 	</aop:config> -->
+
+
+	<!-- SECURITY -->
+	<security:http auto-config="true">
+<!-- 		<security:intercept-url pattern="post/publicar/**" access="ROLE_MEMBRO" requires-channel="https"/> -->
+<!-- 		<security:intercept-url pattern="post/editar/**" access="ROLE_ADMIN,ROLE_MEMBRO"/> -->
+		<security:intercept-url pattern="/**" access="ROLE_ANONYMOUS"/>
+	</security:http>
+
 </beans:beans>
