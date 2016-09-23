@@ -114,5 +114,8 @@
 <!-- 		<security:intercept-url pattern="post/editar/**" access="ROLE_ADMIN,ROLE_MEMBRO"/> -->
 		<security:intercept-url pattern="/**" access="ROLE_ANONYMOUS"/>
 	</security:http>
+	
+	
+	
 
 </beans:beans>
