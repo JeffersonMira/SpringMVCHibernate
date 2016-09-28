@@ -123,7 +123,7 @@
 
 <!-- 		<security:intercept-url pattern="post/publicar/**" access="ROLE_MEMBRO" requires-channel="https"/> -->
 <!-- 		<security:intercept-url pattern="post/editar/**" access="ROLE_ADMIN,ROLE_MEMBRO"/> -->
-
+	
 	<security:authentication-manager>
 	
 		<!-- Nosso provedor -->
