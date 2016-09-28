@@ -112,7 +112,7 @@
 	
 	<security:global-method-security secured-annotations="enabled"/>
 	
-	<beans:bean id="sfAuthenticationProvider" autowire="byType" class="com.journaldev.spring.security.SFAuthenticationProvider"/>
+<!-- 	<beans:bean id="sfAuthenticationProvider" autowire="byType" class="com.journaldev.spring.security.SFAuthenticationProvider"/> -->
 	
 	<security:http auto-config="true" use-expressions="true">
 		<!-- Página de authenticação. Caso nao seja incluido isso, vai criar uma página bem tchupimpa -->
@@ -127,7 +127,7 @@
 	<security:authentication-manager>
 	
 		<!-- Nosso provedor -->
-		<security:authentication-provider ref="sfAuthenticationProvider" />
+<!-- 		<security:authentication-provider ref="sfAuthenticationProvider" /> -->
 		
 		<!-- Provedor baseado em memória -->
 		<security:authentication-provider>
