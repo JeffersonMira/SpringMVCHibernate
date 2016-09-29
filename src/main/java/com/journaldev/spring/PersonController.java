@@ -1,5 +1,6 @@
 package com.journaldev.spring;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.journaldev.spring.model.Person;
 import com.journaldev.spring.service.PersonService;
@@ -79,5 +82,39 @@ public class PersonController {
 		model.addAttribute("person", this.personService.getPersonById(id));
 		model.addAttribute("listPersons", this.personService.listPersons());
 		return "person";
+	}
+	
+//	public ModelAndView login(){
+//		ModelAndView model = new ModelAndView();
+//		return model;
+//	}
+	
+	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
+	public ModelAndView loginPage(
+			@RequestParam(value = "error",required = false) String error,
+			@RequestParam(value = "logout",	required = false) String logout) {
+		
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Invalid Credentials provided.");
+		}
+
+		if (logout != null) {
+			model.addObject("message", "Logged out from JournalDEV successfully.");
+		}
+
+		model.setViewName("loginPage");
+		return model;
+	}
+
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session){
+		ModelAndView model = new ModelAndView();
+		
+		session.invalidate();
+		model.setViewName("persons");
+		
+		return model;
 	}
 }
