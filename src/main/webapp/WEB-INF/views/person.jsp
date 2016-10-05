@@ -77,6 +77,28 @@
 			<form:input path="country" />
 		</td>
 	</tr>
+	
+<!-- 	<tr> -->
+<!-- 		<td> -->
+<%-- 			<form:label path="password"> --%>
+<%-- 				<spring:message text="Password"/> --%>
+<%-- 			</form:label> --%>
+<!-- 		</td> -->
+<!-- 		<td> -->
+<%-- 			<form:input path="password" /> --%>
+<!-- 		</td> -->
+<!-- 	</tr> -->
+	
+<!-- 	<tr> -->
+<!-- 		<td> -->
+<%-- 			<form:label path="authority"> --%>
+<%-- 				<spring:message text="authority"/> --%>
+<%-- 			</form:label> --%>
+<!-- 		</td> -->
+<!-- 		<td> -->
+<%-- 			<form:input path="authority" /> --%>
+<!-- 		</td> -->
+<!-- 	</tr> -->
 	<tr>
 		<td colspan="2">
 			<c:if test="${!empty person.name}">
@@ -99,6 +121,8 @@
 		<th width="80">Person ID</th>
 		<th width="120">Person Name</th>
 		<th width="120">Person Country</th>
+<!-- 		<th width="120">Password</th> -->
+<!-- 		<th width="120">Authority</th> -->
 		<th width="60">Edit</th>
 		<sec:authorize access="hasRole('ROLE_MEMBRO')"> <th width="60">Delete</th></sec:authorize>
 	</tr>
@@ -107,6 +131,8 @@
 			<td>${person.id}</td>
 			<td>${person.name}</td>
 			<td>${person.country}</td>
+<%-- 			<td>${person.password}</td> --%>
+<%-- 			<td>${person.authority.name}</td> --%>
 			<td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
 			<sec:authorize access="hasRole('ROLE_ADMIN')"> <td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td></sec:authorize>
 		</tr>

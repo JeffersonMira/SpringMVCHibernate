@@ -110,10 +110,12 @@ public class PersonController {
 	
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpSession session){
-		ModelAndView model = new ModelAndView();
 		
 		session.invalidate();
-		model.setViewName("persons");
+		
+		ModelAndView model = new ModelAndView();
+		model.addObject("person", new Person());
+		model.setViewName("person");
 		
 		return model;
 	}
