@@ -40,7 +40,7 @@ public class PersonController {
 //		return "person";
 //	}
 	
-	@RequestMapping(value="/persons",method=RequestMethod.GET)
+	@RequestMapping(value="/membro/persons",method=RequestMethod.GET)
 	public String listPersons(Model model){
 		model.addAttribute("person",new Person());
 		model.addAttribute("listPersons", this.personService.listPersons());
@@ -66,18 +66,18 @@ public class PersonController {
 			personService.updatePerson(p);
 		}
 		
-		return "redirect:/persons";
+		return "redirect:/membro/persons";
 	}
 	
 	@Secured("hasRole('ROLE_MEMBRO')") //Spring security intercepta e não deixa qualquer um utilizar o método. 
-	@RequestMapping("/remove/{id}")
+	@RequestMapping("/membro/remove/{id}")
 	public String removePerson(@PathVariable("id") int id){
 		this.personService.removePerson(id);
 		
 		return "redirect:/persons";
 	}
 	
-	@RequestMapping("/edit/{id}")
+	@RequestMapping("/membro/edit/{id}")
 	public String editPerson(@PathVariable("id") int id, Model model){
 		model.addAttribute("person", this.personService.getPersonById(id));
 		model.addAttribute("listPersons", this.personService.listPersons());
@@ -89,8 +89,8 @@ public class PersonController {
 //		return model;
 //	}
 	
-	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-	public ModelAndView loginPage(
+	@RequestMapping(value = "/loginPage", method = RequestMethod.POST)
+	public String loginPage(
 			@RequestParam(value = "error",required = false) String error,
 			@RequestParam(value = "logout",	required = false) String logout) {
 		
@@ -103,13 +103,13 @@ public class PersonController {
 			model.addObject("message", "Logged out from JournalDEV successfully.");
 		}
 
-		model.setViewName("loginPage");
-		return model;
+		model.addObject("person", new Person());
+		model.setViewName("person");
+		return "redirect:/membro/persons";
 	}
-
 	
 	@RequestMapping("/logout")
-	public ModelAndView logout(HttpSession session){
+	public String logout(HttpSession session){
 		
 		session.invalidate();
 		
@@ -117,6 +117,6 @@ public class PersonController {
 		model.addObject("person", new Person());
 		model.setViewName("person");
 		
-		return model;
+		return "redirect:/membro/persons";
 	}
 }

@@ -72,6 +72,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.journaldev.spring.model.Person</beans:value>
+				<beans:value>com.journaldev.spring.model.PermissaoUsuario</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -83,6 +84,7 @@
 	</beans:bean>
 	
 	<beans:bean id="personDAO" class="com.journaldev.spring.dao.PersonDAOImpl" />
+	<beans:bean id="daoPermissao" class="com.journaldev.spring.dao.HBPermissaoUsuario" />
 	<beans:bean id="personService" class="com.journaldev.spring.service.PersonServiceImpl"/>
 	
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -112,23 +114,17 @@
 	
 	<security:global-method-security secured-annotations="enabled"/>
 	
-<!-- 	<beans:bean id="sfAuthenticationProvider" autowire="byType" class="com.journaldev.spring.security.SFAuthenticationProvider"/> -->
+	<beans:bean id="sfAuthenticationProvider" autowire="byType" class="com.journaldev.spring.security.SFAuthenticationProvider"/>
 	
 	<security:http auto-config="true" use-expressions="true">
-		<!-- Página de authenticação. Caso nao seja incluido isso, vai criar uma página bem tchupimpa -->
-<!-- 		<security:form-login login-page="/persons" default-target-url="/persons" authentication-failure-url="/persons"/> -->
-	
-		<security:intercept-url pattern="/**" access="hasRole('ROLE_MEMBRO')"/>
+ 		<!-- Página de authenticação. Caso nao seja incluido isso, vai criar uma página bem tchupimpa -->
+		<security:form-login login-page="/"   default-target-url="/" authentication-failure-url="/"/>
+		<security:intercept-url pattern="/membro/**" access="hasRole('ROLE_MEMBRO')"/>
 	</security:http>
-
-<!-- 		<security:intercept-url pattern="post/publicar/**" access="ROLE_MEMBRO" requires-channel="https"/> -->
-<!-- 		<security:intercept-url pattern="post/editar/**" access="ROLE_ADMIN,ROLE_MEMBRO"/> -->
 	
 	<security:authentication-manager>
-	
 		<!-- Nosso provedor -->
-<!-- 		<security:authentication-provider ref="sfAuthenticationProvider" /> -->
-		
+		<security:authentication-provider ref="sfAuthenticationProvider" />
 		<!-- Provedor baseado em memória -->
 		<security:authentication-provider>
 			<security:user-service>

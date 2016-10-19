@@ -2,21 +2,22 @@ package com.journaldev.spring.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 //import org.apache.log4j.Level;
 //import org.apache.log4j.LogManager;
 //import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 //import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.journaldev.spring.model.Person;
 
-@Repository
+@Repository("personDAO")
 public class PersonDAOImpl implements PersonDAO {
 
 	/*proveniente do org.slf4j, que é uma adaptação para outras ferrametas de log 
@@ -73,5 +74,22 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 		logger.info("Person deleted successfully, person details="+p);
 	}
+	
+	
+	public Person getPerson(String login, String senha) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Person usr where usr.login = ? and usr.hashSenha = ?");
+		query.setString(0, login);
+		query.setString(1, senha);
+		return (Person) query.uniqueResult();				   
+	}
+
+	public Person getPerson(String login) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query =session.createQuery("from Person usr where usr.login = ?");
+		query.setString(0, login);
+		return (Person) query.uniqueResult();
+	}
+
 
 }

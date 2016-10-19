@@ -27,11 +27,16 @@ public class Person {
 	@NotEmpty
 	@Size(max=150)
 	private String name;
+	
+	@Column(name="login", nullable=false, unique=true, length=64)
+	private String login;
+	
+	@Column(name="hash_senha", nullable=false, length=128)
+	private String hashSenha;
+	
 	private String country;
 
-	public Person(){
-		
-	}
+	public Person(){}
 	
 	public Person(int id, String name, String country) {
 		super();
@@ -39,9 +44,11 @@ public class Person {
 		this.name = name;
 		this.country = country;
 	}
+	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		if(id > 0)
 			this.id = id;
@@ -61,8 +68,24 @@ public class Person {
 		this.country = country;
 	}
 	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
+	public String getHashSenha() {
+		return hashSenha;
+	}
+	public void setHashSenha(String valor) {
+		hashSenha = valor;
+	}
+	
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", name=" + name + ", country=" + country + "]";
 	}
+
 }

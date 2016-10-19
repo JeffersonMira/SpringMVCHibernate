@@ -15,31 +15,11 @@
 </head>
 <body>
 
-	<!-- Spring Security do journalDev - Bora testar essa merda -->
-	<p>
-      Hello <b><c:out value="${pageContext.request.remoteUser}"/></b><br>
-      Roles: <b><sec:authentication property="principal.authorities" /></b>
-    </p>
-    
-    <form action="logout" method="post">
-      <input type="submit" value="Logout" />
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form>
-    
-<!--  <h3>Login with Username and Password</h3>
-<form name='f' action='/SpringMVCHibernate/j_spring_security_check' method='POST'>
- <table>
-    <tr><td>User:</td><td><input type='text' name='j_username' value=''></td></tr>
-    <tr><td>Password:</td><td><input type='password' name='j_password'/></td></tr>
-    <tr><td colspan='2'><input name="submit" type="submit" value="Login"/></td></tr>
-  </table>
-</form> -->
-
 <h1>
 	Add a Person
 </h1>
 
-<c:url var="addAction" value="/person/add" ></c:url>
+<c:url var="addAction" value="/membro/person/add" ></c:url>
 
 <form:form action="${addAction}" commandName="person">
 <table>
@@ -133,8 +113,8 @@
 			<td>${person.country}</td>
 <%-- 			<td>${person.password}</td> --%>
 <%-- 			<td>${person.authority.name}</td> --%>
-			<td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
-			<sec:authorize access="hasRole('ROLE_ADMIN')"> <td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td></sec:authorize>
+			<td><a href="<c:url value='/membro/edit/${person.id}' />" >Edit</a></td>
+			<sec:authorize access="hasRole('ROLE_ADMIN')"> <td><a href="<c:url value='/membro/remove/${person.id}' />" >Delete</a></td></sec:authorize>
 		</tr>
 	</c:forEach>
 	</table>

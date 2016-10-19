@@ -7,6 +7,9 @@ show databases;
 use base_spring;
 
 
+
+
+
 CREATE TABLE `Roles` (
   `username` varchar(20) NOT NULL DEFAULT '',
   `role` varchar(20) NOT NULL DEFAULT '',
@@ -20,3 +23,12 @@ VALUES
 	('other', 'ROLE_MEMBRO'),
 	('Jefferson da Silva Mira', 'ROLE_MEMBRO'),
 	('Jefferson da Silva Mira', 'ROLE_ADMIN');
+	
+	
+
+INSERT INTO `person_id` (`person_id`, `role`)
+VALUES
+	('2', 'ROLE_MEMBRO'),
+	('1', 'ROLE_MEMBRO'),
+	('1', 'ROLE_ADMIN');
+	

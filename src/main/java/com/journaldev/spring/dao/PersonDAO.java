@@ -12,4 +12,11 @@ public interface PersonDAO {
 	public Person getPersonById(int id);
 	public void removePerson(int id);
 	
+	/** Busca usuario por login e senha */
+	public Person getPerson(String login, String senha);
+	
+	/** Busca usuario pelo login */
+	public Person getPerson(String login);
+	
+	
 }
